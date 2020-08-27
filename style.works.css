@@ -1,0 +1,72 @@
+body{
+    background-color: #4AB2B4;
+}
+header {
+    position: fixed;
+}
+.header-nav-list {
+    list-style: none;
+    margin-top: 85px;
+    margin-left: 42px;
+    line-height: 1;
+    font-size:30px;
+}
+
+.header-nav-list a{
+    color:#D7355E;
+    text-decoration: none;
+    font-style: "Helvetica";
+}
+
+.header-nav-list a:hover{
+    color: white; /*マウスおいたら文字色変わる*/
+}
+
+.works-photo {
+    
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.photo-left{
+    padding-top: 20px;
+    width: 16%;
+    margin-left: 60px;
+}
+.photo-center{
+    width: 25%;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.photo-right{
+    width: 17%;
+    margin-right: 60px;
+    padding-top: 60px;
+}
+
+.works-photo img{
+    width: 100%;
+}
+
+.photo-center-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.photo-center-top-left{
+    width: 32%;
+}
+.photo-center-top-right{
+    width: 59%;
+}
+
+.works-photo img {
+    margin-bottom: 55px;
+}
+
+.photo-center-top-left img {
+    margin-bottom: 10px;
+}
