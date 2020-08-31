@@ -1,12 +1,12 @@
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  const width = screen.width;
-  const height = screen.height;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
 
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector("#myCanvas")
+    canvas: document.querySelector("#myCanvas"),
   });
   renderer.setClearColor("#4AB2B4"); // 背景色
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -27,11 +27,13 @@ function init() {
   // let texture1 = loader.load("images/box-front.jpg");
   // let material = new THREE.MeshBasicMaterial( { map: texture } );
   let materials = [
-    new THREE.MeshBasicMaterial({ map: loader.load("../images/box3.jpg") }),
-    new THREE.MeshBasicMaterial({ map: loader.load("../images/box4.jpg") }),  
-    new THREE.MeshBasicMaterial({ map: loader.load("../images/box3.jpg") }),
-    new THREE.MeshBasicMaterial({ map: loader.load("../images/box4.jpg") }),
-    new THREE.MeshBasicMaterial({ map: loader.load("../images/box-front.jpg") }), 
+    new THREE.MeshBasicMaterial({ map: loader.load("./images/box3.jpg") }),
+    new THREE.MeshBasicMaterial({ map: loader.load("./images/box4.jpg") }),
+    new THREE.MeshBasicMaterial({ map: loader.load("./images/box3.jpg") }),
+    new THREE.MeshBasicMaterial({ map: loader.load("./images/box4.jpg") }),
+    new THREE.MeshBasicMaterial({
+      map: loader.load("../images/box-front.jpg"),
+    }),
     new THREE.MeshBasicMaterial({ map: loader.load("../images/box5.jpg") }),
   ];
   var material = new THREE.MeshFaceMaterial(materials);
@@ -50,25 +52,49 @@ function init() {
   tick();
 
   function tick() {
-    window.onmousemove = handleMouseMove;
-    requestAnimationFrame(tick);
+    if (width > 480) {
+      window.onmousemove = handleMouseMove;
+    } else {
+      window.ontouchmove = handleTouchMove;
+      // box.rotation.x += 0.01;
+      // box.rotation.y -= 0.01;
+    }
 
+    requestAnimationFrame(tick);
     function handleMouseMove(event) {
       b_x = width / 2;
       b_y = height / 2;
       event = event || window.event; // IE対応
       if (event.clientX < width && event.clientY < height) {
-        x = parseInt(event.clientX) * -0.005;
-        y = (parseInt(event.clientY) - 250) * 0.005;
+        x = parseInt(event.clientX) * 0.005;
+        y = (parseInt(event.clientY) - 50) * 0.005;
+        box.rotation.x = y - b_y;
+        box.rotation.y = x - b_x;
+      }
+      // console.log(x + "," + y);
+      b_x = x;
+      b_y = y;
+      // console.log(String(x) + ", " + String(y));
+    }
+
+    function handleTouchMove(event) {
+      b_x = width / 2;
+      b_y = height / 2;
+      var touchObject = event.changedTouches[0];
+      event = event || window.event; // IE対応
+      if (touchObject.pageX < width && touchObject.pageY < height) {
+        x = parseInt(touchObject.pageX) * 0.005;
+        y = (parseInt(touchObject.pageY) - 50) * 0.005;
         box.rotation.x = y - b_y;
         box.rotation.y = x - b_x;
       }
       b_x = x;
       b_y = y;
       // console.log(String(x) + ", " + String(y));
+      // レンダリング
+      renderer.render(scene, camera);
     }
-    // box.rotation.x += 0.01;
-    // box.rotation.y += 0.01;
+
     // レンダリング
     renderer.render(scene, camera);
   }
