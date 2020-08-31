@@ -27,10 +27,10 @@ function init() {
   // let texture1 = loader.load("images/box-front.jpg");
   // let material = new THREE.MeshBasicMaterial( { map: texture } );
   let materials = [
-    new THREE.MeshBasicMaterial({ map: loader.load("./images/box3.jpg") }),
-    new THREE.MeshBasicMaterial({ map: loader.load("./images/box4.jpg") }),
-    new THREE.MeshBasicMaterial({ map: loader.load("./images/box3.jpg") }),
-    new THREE.MeshBasicMaterial({ map: loader.load("./images/box4.jpg") }),
+    new THREE.MeshBasicMaterial({ map: loader.load("../images/box3.jpg") }),
+    new THREE.MeshBasicMaterial({ map: loader.load("../images/box4.jpg") }),
+    new THREE.MeshBasicMaterial({ map: loader.load("../images/box3.jpg") }),
+    new THREE.MeshBasicMaterial({ map: loader.load("../images/box4.jpg") }),
     new THREE.MeshBasicMaterial({
       map: loader.load("../images/box-front.jpg"),
     }),
