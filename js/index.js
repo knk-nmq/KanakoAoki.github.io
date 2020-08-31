@@ -56,8 +56,8 @@ function init() {
       window.onmousemove = handleMouseMove;
     } else {
       window.ontouchmove = handleTouchMove;
-      // box.rotation.x += 0.01;
-      // box.rotation.y -= 0.01;
+      box.rotation.x += 0.01;
+      box.rotation.y -= 0.01;
     }
 
     requestAnimationFrame(tick);
